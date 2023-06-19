@@ -2,6 +2,8 @@
 // import 'package:flutter/services.dart';
 // import 'package:provider/provider.dart';
 
+import 'package:scrc/screens/analytics.dart';
+
 import './screens/map_view_screen.dart';
 import './providers/verticals.dart';
 import './screens/vertical_detail_screen.dart';
@@ -26,6 +28,7 @@ import './screens/vertical_detail_screen.dart';
 import './screens/summary_detail_screen.dart';
 import './screens/verticals_overview_screen.dart';
 import './theme.dart';
+
 // import 'package:home_widget/home_widget.dart';
 
 // void callbackDispatcher() {
@@ -197,7 +200,9 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
           title: 'SCRC Lab',
           theme: theme(),
-          home: VerticalsOverviewScreen(),
+          home:
+              //Analytics(),
+              VerticalsOverviewScreen(),
           routes: {
             VerticalsOverviewScreen.routeName: (ctx) =>
                 VerticalsOverviewScreen(),
@@ -206,6 +211,16 @@ class _MyAppState extends State<MyApp> {
             SummaryDetailScreen.routeName: (ctx) => SummaryDetailScreen(),
             AboutScreen.routeName: (ctx) => AboutScreen(),
             MapViewScreen.routeName: (ctx) => MapViewScreen(),
+            Analytics.routeName: (ctx) => Analytics(
+//                   iframeUrl:
+//                       // 'https://www.bing.com/',
+//                       'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685108146029&to=1686836146030&viewPanel=38',
+// //
+//                   webViewHeight: 500.0,
+//                   webViewWidth: 500.0,
+                ),
+
+            //Analytics.routeName: (ctx) => Analytics(),
           },
         ));
   }

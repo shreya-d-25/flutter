@@ -485,14 +485,21 @@ class _VerticalItemState extends State<VerticalItem> {
                                         right: getProportionateScreenHeight(40),
                                       ),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  "assets/dashboard_icon/" +
-                                                      vertical.title +
-                                                      ".png"),
-                                              fit: BoxFit.cover)),
+                                        borderRadius: BorderRadius.circular(50),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/dashboard_icon/" +
+                                                    vertical.title +
+                                                    ".png"),
+                                            fit: BoxFit.cover),
+                                        // boxShadow: [
+                                        //   BoxShadow(
+                                        //       color: Colors.white
+                                        //           .withOpacity(0.2),
+                                        //       //offset: Offset(1.1, 1.1),
+                                        //       blurRadius: 10.0,
+                                        //       spreadRadius: 12.0)]
+                                      ),
                                     )
                             ],
                           )

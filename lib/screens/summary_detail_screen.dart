@@ -52,7 +52,6 @@ class _SummaryDetailScreenState extends State<SummaryDetailScreen> {
             ),
             drawer: MyDrawer(),
             body: Center(
-              
               child: SummaryDetails(),
               // body: _isloading ? Center(child: CircularProgressIndicator()) : VerticalsGrid(),
             ));
