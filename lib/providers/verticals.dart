@@ -25,17 +25,40 @@ class Verticals with ChangeNotifier {
       final List<Vertical> loadedVerticals = [];
       if (extractedData != null) {
         extractedData.forEach((prodName, prodData) {
-          loadedVerticals.add(Vertical(
-              title: prodName,
-              vertices: (prodData as List<dynamic>)
-                  .map((e) => Vertex(
-                      name: e['name'],
-                      nodeId: e['node_id'],
-                      type: prodName,
-                      latitude: e['latitude'],
-                      longitude: e['longitude'],
-                      data: e as Map<String, dynamic>))
-                  .toList()));
+          if (prodName == "wn") {
+            // Exclude specific nodes from "wn"
+            //final excludedNodes = ["WN-LP01-03", "WN-LP03-02"];
+
+            final filteredProdData = (prodData as List<dynamic>).where((e) {
+              //return !excludedNodes.contains(e['node_id']);
+              final nodeId = e['node_id'];
+              return !nodeId.startsWith("WN-LP");
+            }).toList();
+
+            loadedVerticals.add(Vertical(
+                title: prodName,
+                vertices: filteredProdData
+                    .map((e) => Vertex(
+                        name: e['name'],
+                        nodeId: e['node_id'],
+                        type: prodName,
+                        latitude: e['latitude'],
+                        longitude: e['longitude'],
+                        data: e as Map<String, dynamic>))
+                    .toList()));
+          } else {
+            loadedVerticals.add(Vertical(
+                title: prodName,
+                vertices: (prodData as List<dynamic>)
+                    .map((e) => Vertex(
+                        name: e['name'],
+                        nodeId: e['node_id'],
+                        type: prodName,
+                        latitude: e['latitude'],
+                        longitude: e['longitude'],
+                        data: e as Map<String, dynamic>))
+                    .toList()));
+          }
         });
       }
       _items = loadedVerticals.toList();
@@ -68,5 +91,4 @@ class Verticals with ChangeNotifier {
       print(error);
     }
   }
-
 }
