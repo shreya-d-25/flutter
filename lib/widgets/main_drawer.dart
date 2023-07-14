@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:scrc/screens/about.dart';
+import 'package:scrc/screens/admin_console.dart';
+import 'package:scrc/screens/admin_login.dart';
 import 'package:scrc/screens/analytics.dart';
 import 'package:scrc/screens/summary_detail_screen.dart';
 
@@ -8,9 +10,15 @@ import '../screens/map_view_screen.dart';
 import '../screens/verticals_overview_screen.dart';
 import '../size_config.dart';
 
+import 'package:provider/provider.dart';
+import 'package:scrc/providers/auth_provider.dart';
+
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final bool isLoggedIn = authProvider.isLoggedIn;
+
     SizeConfig().init(context);
     return Drawer(
       child: Column(children: [
@@ -31,6 +39,23 @@ class MyDrawer extends StatelessWidget {
               image: DecorationImage(
                   image: AssetImage("assets/icon/smartCity_livingLab.png"),
                   fit: BoxFit.contain)),
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.shop),
+          title: Text("About"),
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed(AboutScreen.routeName);
+          },
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.shop),
+          title: Text("Insights"),
+          onTap: () {
+            Navigator.of(context)
+                .pushReplacementNamed(SummaryDetailScreen.routeName);
+          },
         ),
         Divider(),
         ListTile(
@@ -64,18 +89,12 @@ class MyDrawer extends StatelessWidget {
           leading: Icon(Icons.shop),
           title: Text("Summary"),
           onTap: () {
-            Navigator.of(context)
-                .pushReplacementNamed(SummaryDetailScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(
+              Analytics.routeName,
+            );
           },
         ),
-        Divider(),
-        ListTile(
-          leading: Icon(Icons.shop),
-          title: Text("About"),
-          onTap: () {
-            Navigator.of(context).pushReplacementNamed(AboutScreen.routeName);
-          },
-        ),
+
         Divider(),
         ListTile(
           leading: Icon(Icons.shop),
@@ -85,16 +104,24 @@ class MyDrawer extends StatelessWidget {
                 .pushReplacementNamed(VerticalsOverviewScreen.routeName);
           },
         ),
-        Divider(),
-        ListTile(
-          leading: Icon(Icons.shop),
-          title: Text("Analytics"),
-          onTap: () {
-            Navigator.of(context).pushReplacementNamed(
-              Analytics.routeName,
-            );
-          },
-        ),
+
+        // Divider(),
+        // ListTile(
+        //   leading: Icon(Icons.shop),
+        //   title: Text("Admin Login"),
+        //   onTap: () {
+        //     isLoggedIn
+        //         ? Navigator.of(context).pushReplacementNamed(
+        //             AdminConsole.routeName,
+        //           )
+        //         : Navigator.of(context).pushReplacementNamed(
+        //             AdminLoginPage.routeName,
+        //           );
+        //     // Navigator.of(context).pushReplacementNamed(
+        //     //   AdminLoginPage.routeName,
+        //     // );
+        //   },
+        // ),
       ]),
     );
   }

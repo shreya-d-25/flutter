@@ -6,20 +6,21 @@ import 'package:scrc/widgets/main_drawer.dart';
 class Analytics extends StatelessWidget {
   static const routeName = "/analytics";
   final List<String> iframeUrls = [
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685108146029&to=1686836146030&viewPanel=38&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251687781&to=1686979687782&viewPanel=56&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251713560&to=1686979713560&viewPanel=40&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251724539&to=1686979724539&viewPanel=42&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251740093&to=1686979740094&viewPanel=31&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251749102&to=1686979749102&viewPanel=49&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251758910&to=1686979758910&viewPanel=30&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251768948&to=1686979768948&viewPanel=53&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251776609&to=1686979776609&viewPanel=47&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251790461&to=1686979790461&viewPanel=46&kiosk',
-    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=1685251799233&to=1686979799233&viewPanel=55&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=38&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=56&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=40&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=42&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=31&kiosk',
+    //'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=49&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=30&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=53&kiosk',
+    // 'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=47&kiosk',
+    //'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=46&kiosk',
+    'https://smartcitylivinglab.iiit.ac.in/grafana/d/kyLuJXQ7z/summary_view?orgId=1&from=now-3w&to=now&viewPanel=55&kiosk',
   ];
   final double webViewHeight = 275;
-  final double webViewWidth = 400;
+
+  //final double webViewWidth = 400;
   // String iframeUrl;
 
   // double webViewHeight;
@@ -33,6 +34,7 @@ class Analytics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double webViewWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text("Analytics"),

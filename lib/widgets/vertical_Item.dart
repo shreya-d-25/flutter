@@ -1,12 +1,14 @@
-import 'dart:developer';
 import 'dart:ui';
 //import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrc/providers/vertical.dart';
 import 'package:scrc/screens/vertical_detail_screen.dart';
+import 'package:scrc/providers/verticals.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../screens/admin_vertical_detail_screen.dart';
+import '../screens/node_management.dart';
 import '../size_config.dart';
 
 class VerticalItem extends StatefulWidget {
@@ -22,9 +24,10 @@ class _VerticalItemState extends State<VerticalItem> {
   Color cardColor = Colors.white;
   int temperatureValue = 0;
   int t;
-  int min;
-  int max;
+  var min;
+  var max;
   int touchedReading;
+  int n;
 
   // int solarRadiation;
   // int relHumidity;
@@ -137,7 +140,7 @@ class _VerticalItemState extends State<VerticalItem> {
   }
 
   //method for changing vcolor of vertical
-  void changeVerticalColor(String key, int a, int b) {
+  void changeVerticalColor(String key, var a, var b) {
     print("hey!!");
     print(readings[key]);
     try {
@@ -176,6 +179,7 @@ class _VerticalItemState extends State<VerticalItem> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     List<Widget> r = [];
+    //n = vertical.vertices.length - vertical.m;
 
     ///the list to add widget column
     if (!_isLoading) {
@@ -262,31 +266,468 @@ class _VerticalItemState extends State<VerticalItem> {
             //onTap: () => print("hi"),
             onTap: () {
               print("HI");
+              //weather station
               if (key == "temperature") {
                 min = 25;
                 max = 30;
+                print(vertical.title);
               }
               if (key == "solar_radiation") {
                 min = 2;
                 max = 4;
               }
               if (key == "relative_humidity") {
+                min = 60;
+                max = 80;
+              }
+              if (key == "wind_direction") {
+                min = 500;
+                max = 1000;
+              }
+              if (key == "wind_speed") {
                 min = 20;
                 max = 40;
               }
+              if (key == "gust_speed") {
+                min = 20;
+                max = 40;
+              }
+              if (key == "dew_point") {
+                min = 16;
+                max = 19;
+              }
+              if (key == "battery_dc_voltage") {
+                min = 5;
+                max = 8;
+              }
+              if (key == "rain") {
+                min = 20;
+                max = 40;
+              }
+              if (key == "pressure") {
+                min = 1000;
+                max = 2000;
+              }
+              //air quality
               if (key == "pm25") {
-                min = 15;
-                max = 25;
+                min = 30;
+                max = 60;
               }
               if (key == "pm10") {
-                min = 15;
-                max = 25;
+                min = 50;
+                max = 100;
               }
+              if (key == "co") {
+                min = 1.0;
+                max = 2.0;
+              }
+              if (key == "no2") {
+                min = 40;
+                max = 80;
+              }
+              if (key == "nh3") {
+                min = 200;
+                max = 400;
+              }
+              if (key == "aqi") {
+                min = 50;
+                max = 100;
+              }
+              if (key == "aql") {
+                min = 50;
+                max = 100;
+              }
+              if (key == "aqi_mp") {
+                min = 50;
+                max = 100;
+              }
+              //wisun
               if (key == "rssi") {
-                min = 15;
-                max = 25;
+                min = 60;
+                max = 80;
               }
               if (key == "latency") {
+                min = 2000;
+                max = 5000;
+              }
+              if (key == "data_rate") {
+                min = 60;
+                max = 100;
+              }
+              if (key == "packet_size") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "rsl_in") {
+                min = 60;
+                max = 80;
+              }
+              if (key == "etx") {
+                min = 195;
+                max = 250;
+              }
+              if (key == "rpl_rank") {
+                min = 20000;
+                max = 40000;
+              }
+              if (key == "mac_tx_failed_count") {
+                min = 2;
+                max = 4;
+              }
+              if (key == "mac_tx_count") {
+                min = 5000;
+                max = 9000;
+              }
+              //water flow
+              if (key == "flowrate") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "total_flow") {
+                min = 25000;
+                max = 50000;
+              }
+              if (key == "pressure_voltage") {
+                min = 40;
+                max = 60;
+              }
+              //water distribution
+              if (key == "tds_voltage") {
+                min = 4;
+                max = 6;
+              }
+              if (key == "uncompensated_tds_value") {
+                min = 100;
+                max = 250;
+              }
+              if (key == "compensated_tds_value") {
+                min = 300;
+                max = 500;
+              }
+              if (key == "water_level") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "ph") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "turbidity") {
+                min = 40;
+                max = 60;
+              }
+              //solar energy
+              if (key == "eac_today") {
+                min = 170;
+                max = 200;
+              }
+              if (key == "eac_total") {
+                min = 200000;
+                max = 600000;
+              }
+              if (key == "active_power") {
+                min = 20000;
+                max = 25000;
+              }
+              if (key == "voltage_rs") {
+                min = 300;
+                max = 350;
+              }
+              if (key == "voltage_st") {
+                min = 300;
+                max = 350;
+              }
+              if (key == "voltage_tr") {
+                min = 300;
+                max = 350;
+              }
+              if (key == "frequency") {
+                min = 200;
+                max = 300;
+              }
+              if (key == "power_factor") {
+                min = 2;
+                max = 5;
+              }
+              if (key == "voltage1") {
+                min = 100;
+                max = 200;
+              }
+              if (key == "current1") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "power1") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "voltage2") {
+                min = 100;
+                max = 200;
+              }
+              if (key == "current2") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "power2") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "voltage3") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "current3") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "power3") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv1_voltage") {
+                min = 300;
+                max = 350;
+              }
+              if (key == "pv1_current") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "pv1_power") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv2_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "pv2_current") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "pv2_power") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv3_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "pv3_current") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "pv3_power") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv4_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "pv4_current") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "pv4_power") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv5_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "pv5_current") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "pv5_power") {
+                min = 8000;
+                max = 10000;
+              }
+              if (key == "pv6_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "pv6_current") {
+                min = 50;
+                max = 60;
+              }
+              if (key == "pv6_power") {
+                min = 8000;
+                max = 10000;
+              }
+              //energy monitoring
+              if (key == "r_current") {
+                min = 1000000;
+                max = 1000005;
+              }
+              if (key == "y_current") {
+                min = 1000000;
+                max = 1000005;
+              }
+              if (key == "b_current") {
+                min = 1000000;
+                max = 1000005;
+              }
+              if (key == "r_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "y_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "b_voltage") {
+                min = 340;
+                max = 360;
+              }
+              if (key == "power_factor") {
+                min = 2;
+                max = 6;
+              }
+              if (key == "apparent_power") {
+                min = 700000;
+                max = 1000005;
+              }
+              if (key == "real_power") {
+                min = 300000;
+                max = 500005;
+              }
+              if (key == "energy_consumption") {
+                min = 5000000;
+                max = 7000000;
+              }
+              if (key == "reactive_energy_lead") {
+                min = 6000000;
+                max = 7000000;
+              }
+              if (key == "reactive_energy_lag") {
+                min = 6000000;
+                max = 7000005;
+              }
+              if (key == "total_energy_consumption") {
+                min = 5000000;
+                max = 7000000;
+              }
+              //sm-aq
+              if (key == "co2") {
+                min = 700;
+                max = 1000;
+              }
+              //sm-em
+              if (key == "energy") {
+                min = 400000000;
+                max = 500000000;
+              }
+              if (key == "power") {
+                min = 2000;
+                max = 3000;
+              }
+              if (key == "current") {
+                min = 250;
+                max = 300;
+              }
+              //smart room - air conditioning
+              if (key == "room_temp") {
+                min = 25;
+                max = 30;
+              }
+              if (key == "temp_adjust") {
+                min = 20;
+                max = 25;
+              }
+              if (key == "start_stop_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "alarm") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "malfunction_code") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "air_con_mode_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "air_flow_rate_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "filter_sign") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "gas_total_power") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "elec_total_power") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "air_direction_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "forced_thermo_off_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "energy_efficiency_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "compressor_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "indoor_fan_status") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "heater_status") {
+                min = 40;
+                max = 60;
+              }
+              //smart room - occupancy
+              if (key == "occupancy1") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "occupancy2") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "occupancy3") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "occupancy4") {
+                min = 40;
+                max = 60;
+              }
+              //crowd monitoring
+              if (key == "current_people_count") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "no_of_safe_distance_violations") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "no_of_mask_violations") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "timestamp_start") {
+                min = 40;
+                max = 60;
+              }
+              if (key == "timestamp_end") {
                 min = 40;
                 max = 60;
               }
@@ -391,6 +832,13 @@ class _VerticalItemState extends State<VerticalItem> {
             onTap: () {
               Navigator.of(context).pushNamed(VerticalDetailScreen.routeName,
                   arguments: [vertical.title, readings['name']]);
+              // Navigator.of(context).pushNamed(
+              //   ModalRoute.of(context).settings.name ==
+              //           NodeManagementPage.routeName
+              //       ? AdminVerticalDetailScreen.routeName
+              //       : VerticalDetailScreen.routeName,
+              //   arguments: [vertical.title, readings['name']],
+              // );
             },
             child: Padding(
               padding: const EdgeInsets.only(
@@ -450,8 +898,35 @@ class _VerticalItemState extends State<VerticalItem> {
                                     child: _isLoading
                                         ? Center(
                                             child: CircularProgressIndicator())
+                                        //no of nodes
                                         : Text(
-                                            vertical.vertices.length.toString(),
+                                            //n.toString(),
+                                            //vertical.nodeCount.toString(),
+                                            //vertical.vertices.length.toString(),
+                                            // (vertical.title == 'wn')
+                                            //     ? '60'
+                                            //     : (vertical.title == 'aq')
+                                            //         ? '10'
+                                            //         : (vertical.title == 'em')
+                                            //             ? '50'
+                                            //             : (vertical.title ==
+                                            //                     'sr_ac')
+                                            //                 ? '91'
+                                            //                 : (vertical.title ==
+                                            //                         'sr_oc')
+                                            //                     ? '6'
+                                            //                     : (vertical.title ==
+                                            //                             'cm')
+                                            //                         ? '6'
+                                            //                         : vertical
+                                            //                             .vertices
+                                            //                             .length
+                                            //                             .toString(),
+                                            (vertical.vertices
+                                                    .where((vertex) =>
+                                                        !vertex.excluded)
+                                                    .length)
+                                                .toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,

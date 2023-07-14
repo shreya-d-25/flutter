@@ -8,6 +8,8 @@ class DetailsTitle extends StatelessWidget {
   String imagePath;
   String title;
   DetailsTitle({this.imagePath, this.title});
+  //Color textColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,6 +19,9 @@ class DetailsTitle extends StatelessWidget {
         ),
         Text(
           title,
+          style: (title == 'Deployment')
+              ? TextStyle(color: Colors.white)
+              : TextStyle(color: Colors.black),
         )
       ],
     );

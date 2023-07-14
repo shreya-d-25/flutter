@@ -88,19 +88,18 @@ class _VerticalDetailScreenState extends State<VerticalDetailScreen> {
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
             appBar: AppBar(
-              title: _appBarTitle, 
-              backgroundColor: Colors.white,
-              titleTextStyle: TextStyle(
-                color: Color(0XFF8B8B8B), fontSize: 18
-              ),
-              elevation: 5,
-              iconTheme: IconThemeData(color: Colors.black),
-              actions: [
-              IconButton(
-                icon: _searchIcon,
-                onPressed: _searchPressed,
-              ),
-            ]),
+                title: _appBarTitle,
+                backgroundColor: Colors.white,
+                titleTextStyle:
+                    TextStyle(color: Color(0XFF8B8B8B), fontSize: 18),
+                elevation: 5,
+                iconTheme: IconThemeData(color: Colors.black),
+                actions: [
+                  IconButton(
+                    icon: _searchIcon,
+                    onPressed: _searchPressed,
+                  ),
+                ]),
             body: SingleChildScrollView(
               physics: ScrollPhysics(),
               child: Column(
@@ -130,6 +129,7 @@ class _VerticalDetailScreenState extends State<VerticalDetailScreen> {
                       return VertexItem(
                         index: i + 1,
                         vertex: _filteredVertices[i],
+                        // userRole: 'user',
                       );
                     },
                   ),

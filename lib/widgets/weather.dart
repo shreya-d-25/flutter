@@ -12,11 +12,26 @@ class Weather extends StatelessWidget {
   Weather({this.details});
   @override
   Widget build(BuildContext context) {
+    final we = int.parse(details['relative_humidity'].split(" ")[0]);
+    print(we);
+
+    String backgroundImage;
+    if (we < 60 && we >= 20) {
+      backgroundImage = 'assets/background/gwe.png';
+    } else if (we <= 80 && we >= 60) {
+      backgroundImage = 'assets/background/okwe.png';
+    } else {
+      backgroundImage = 'assets/background/bwe.png';
+    }
+
     print(details);
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-          color: Colors.black, borderRadius: BorderRadius.circular(8)),
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(8),
+          image: DecorationImage(
+              image: AssetImage(backgroundImage), fit: BoxFit.fill)),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(16),
@@ -24,19 +39,27 @@ class Weather extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DetailsTitle(imagePath: 'assets/icon/we.png', title: 'Weather'),
+          DetailsTitle(
+              //imagePath: 'assets/icon/we.png',
+              title: '                    Weather'),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
           SummaryDetailsCard(
-            name: "Temperature", value: details["temperature"],
-            
-            //cardColor: temperature > 20 ? Colors.red : null,
-          ),
+              name: "Temperature",
+              value: details["temperature"],
+              textColor: Colors.black
+
+              //cardColor: temperature > 20 ? Colors.red : null,
+              ),
           SummaryDetailsCard(
-              name: "rHumidity", value: details["relative_humidity"]),
+              name: "rHumidity",
+              value: details["relative_humidity"],
+              textColor: Colors.black),
           SummaryDetailsCard(
-              name: "Solar Radiation", value: details["solar_radiation"]),
+              name: "Solar Radiation",
+              value: details["solar_radiation"],
+              textColor: Colors.black),
         ],
       ),
     );

@@ -37,8 +37,8 @@ dependencies:
   animated_stack: ^0.2.0
   syncfusion_flutter_charts: ^18.4.49
   syncfusion_flutter_datepicker: ^18.4.49-beta
-  #flutter_kiosk_mode: ^0.0.1
- 
+  shared_preferences: ^2.0.17
+  
   flutter_html_iframe: ^3.0.0-alpha.2 
   # workmanager: ^0.4.1
   # home_widget: ^0.1.6

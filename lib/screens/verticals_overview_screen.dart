@@ -22,7 +22,9 @@ class _VerticalsOverviewScreenState extends State<VerticalsOverviewScreen> {
       setState(() {
         _isloading = true;
       });
-      Provider.of<Verticals>(context).fetchAndSetVerticals().then((value) {
+      Provider.of<Verticals>(context)
+          .fetchAndSetVerticals(context)
+          .then((value) {
         setState(() {
           _isloading = false;
         });

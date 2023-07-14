@@ -7,16 +7,19 @@ import '../providers/verticals.dart';
 class SummaryDetailsCard extends StatelessWidget {
   var name;
   var value;
-  SummaryDetailsCard({this.name, this.value});
+  Color textColor;
+  SummaryDetailsCard({this.name, this.value, this.textColor});
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Text(
-          name + ": "
+          name + ": ",
+          style: TextStyle(color: textColor),
         ),
         Text(
-          value
+          value,
+          style: TextStyle(color: textColor),
         )
       ],
     );

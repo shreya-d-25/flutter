@@ -14,15 +14,16 @@ class AirQuality extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final aqi = int.parse(details['aqi']);
+
     //print(details['aqi']);
     String backgroundImage;
 
     if (aqi >= 0 && aqi <= 50) {
-      backgroundImage = 'assets/background/env1.png';
+      backgroundImage = 'assets/background/gaq.png';
     } else if (aqi >= 51 && aqi <= 100) {
-      backgroundImage = 'assets/background/desert.png';
+      backgroundImage = 'assets/background/okaq.png';
     } else {
-      backgroundImage = 'assets/background/snow.png';
+      backgroundImage = 'assets/background/baq.png';
     }
 
     print(details);
@@ -33,7 +34,7 @@ class AirQuality extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           // background image
           image: DecorationImage(
-              image: AssetImage(backgroundImage), fit: BoxFit.cover)),
+              image: AssetImage(backgroundImage), fit: BoxFit.fill)),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenWidth(16),
@@ -42,13 +43,18 @@ class AirQuality extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          DetailsTitle(imagePath: 'assets/icon/aq.png', title: 'Air Quality'),
+          DetailsTitle(
+              imagePath: 'assets/icon/a.png',
+              title: '                    Air Quality'),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
-          SummaryDetailsCard(name: "PM10", value: details["pm10"]),
-          SummaryDetailsCard(name: "PM25", value: details["pm25"]),
-          SummaryDetailsCard(name: "AQI", value: details["aqi"]),
+          SummaryDetailsCard(
+              name: "PM10", value: details["pm10"], textColor: Colors.black),
+          SummaryDetailsCard(
+              name: "PM25", value: details["pm25"], textColor: Colors.black),
+          SummaryDetailsCard(
+              name: "AQI", value: details["aqi"], textColor: Colors.black),
         ],
       ),
     );

@@ -2,7 +2,12 @@
 // import 'package:flutter/services.dart';
 // import 'package:provider/provider.dart';
 
+import 'package:scrc/providers/node_state_provider.dart';
+import 'package:scrc/screens/admin_console.dart';
+import 'package:scrc/screens/admin_login.dart';
+import 'package:scrc/screens/admin_vertical_detail_screen.dart';
 import 'package:scrc/screens/analytics.dart';
+import 'package:scrc/screens/node_management.dart';
 
 import './screens/map_view_screen.dart';
 import './providers/verticals.dart';
@@ -29,6 +34,9 @@ import './screens/summary_detail_screen.dart';
 import './screens/verticals_overview_screen.dart';
 import './theme.dart';
 
+import 'package:scrc/providers/auth_provider.dart';
+import 'package:scrc/screens/admin_console.dart';
+import 'package:scrc/screens/admin_login.dart';
 // import 'package:home_widget/home_widget.dart';
 
 // void callbackDispatcher() {
@@ -196,6 +204,8 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(
             create: (ctx) => Summaries(),
           ),
+          ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+          ChangeNotifierProvider(create: (_) => NodeStateProvider())
         ],
         child: MaterialApp(
           title: 'SCRC Lab',
@@ -219,8 +229,11 @@ class _MyAppState extends State<MyApp> {
 //                   webViewHeight: 500.0,
 //                   webViewWidth: 500.0,
                 ),
-
-            //Analytics.routeName: (ctx) => Analytics(),
+            // AdminLoginPage.routeName: (ctx) => AdminLoginPage(),
+            // AdminConsole.routeName: (ctx) => AdminConsole(),
+            // NodeManagementPage.routeName: (ctx) => NodeManagementPage(),
+            // AdminVerticalDetailScreen.routeName: (ctx) =>
+            //     AdminVerticalDetailScreen(),
           },
         ));
   }

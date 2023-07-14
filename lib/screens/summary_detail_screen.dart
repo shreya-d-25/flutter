@@ -48,7 +48,7 @@ class _SummaryDetailScreenState extends State<SummaryDetailScreen> {
         : Scaffold(
             appBar: AppBar(
               //backgroundColor: Colors.white,
-              title: Text("Summary", style: TextStyle(color: Colors.black)),
+              title: Text("Insights", style: TextStyle(color: Colors.black)),
             ),
             drawer: MyDrawer(),
             body: Center(

@@ -4,6 +4,8 @@ class Vertex {
   String type;
   double latitude;
   double longitude;
+  bool excluded;
+
   Map<String, dynamic> data;
   Vertex({
     this.name,
@@ -11,6 +13,8 @@ class Vertex {
     this.type,
     this.latitude,
     this.longitude,
-    this.data
+    this.data,
+    this.excluded = false,
+
   });
 }
