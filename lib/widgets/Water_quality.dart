@@ -14,25 +14,22 @@ class WaterQuality extends StatelessWidget {
   Widget build(BuildContext context) {
     print(details);
     return Container(
-      width: MediaQuery.of(context).size.width*0.9,
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(8)
-      ),
+          color: Colors.black, borderRadius: BorderRadius.circular(8)),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(16),
-        vertical: getProportionateScreenHeight(16)
-      ),
+          horizontal: getProportionateScreenWidth(16),
+          vertical: getProportionateScreenHeight(16)),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,  
-
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DetailsTitle(imagePath: 'assets/icon/wd.png', title: 'Water Quality'),
           SizedBox(
             height: getProportionateScreenHeight(20),
           ),
-          SummaryDetailsCard(name: "TDS", value: details["compensated_tds_value"]),
+          SummaryDetailsCard(
+              name: "TDS", value: details["compensated_tds_value"]),
         ],
       ),
     );

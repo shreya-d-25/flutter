@@ -23,6 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #webview_flutter: ^2.0.13
+  flutter_inappwebview: ^5.3.2
+  #flutter_webview_plugin :
   provider: ^4.3.2+2
   google_maps_flutter: ^2.0.6
   google_maps: ^4.0.0
@@ -34,6 +37,9 @@ dependencies:
   animated_stack: ^0.2.0
   syncfusion_flutter_charts: ^18.4.49
   syncfusion_flutter_datepicker: ^18.4.49-beta
+  #flutter_kiosk_mode: ^0.0.1
+ 
+  flutter_html_iframe: ^3.0.0-alpha.2 
   # workmanager: ^0.4.1
   # home_widget: ^0.1.6
 
@@ -64,6 +70,7 @@ flutter:
   assets:   
     - assets/icon/
     - assets/dashboard_icon/
+    - assets/background/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

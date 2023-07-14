@@ -10,22 +10,36 @@ import '../providers/verticals.dart';
 class AirQuality extends StatelessWidget {
   var details;
   AirQuality({this.details});
+
   @override
   Widget build(BuildContext context) {
+    final aqi = int.parse(details['aqi']);
+    //print(details['aqi']);
+    String backgroundImage;
+
+    if (aqi >= 0 && aqi <= 50) {
+      backgroundImage = 'assets/background/env1.png';
+    } else if (aqi >= 51 && aqi <= 100) {
+      backgroundImage = 'assets/background/desert.png';
+    } else {
+      backgroundImage = 'assets/background/snow.png';
+    }
+
     print(details);
     return Container(
-      width: MediaQuery.of(context).size.width*0.9,
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(8)
-      ),
+          //color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          // background image
+          image: DecorationImage(
+              image: AssetImage(backgroundImage), fit: BoxFit.cover)),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(16),
-        vertical: getProportionateScreenHeight(16)
-      ),
+          horizontal: getProportionateScreenWidth(16),
+          vertical: getProportionateScreenHeight(16)),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,  
+        mainAxisAlignment: MainAxisAlignment.center,
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DetailsTitle(imagePath: 'assets/icon/aq.png', title: 'Air Quality'),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:scrc/screens/about.dart';
+import 'package:scrc/screens/analytics.dart';
 import 'package:scrc/screens/summary_detail_screen.dart';
 
 import '../screens/map_view_screen.dart';
@@ -82,6 +83,16 @@ class MyDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context)
                 .pushReplacementNamed(VerticalsOverviewScreen.routeName);
+          },
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.shop),
+          title: Text("Analytics"),
+          onTap: () {
+            Navigator.of(context).pushReplacementNamed(
+              Analytics.routeName,
+            );
           },
         ),
       ]),
