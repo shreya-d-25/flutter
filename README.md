@@ -1,8 +1,7 @@
-
-#About the Project
+# About the Project
 The SCRC (Smart City Research Center) app is designed to monitor and analyze data collected from various sensors and devices deployed in smart campus. The app enables users to gain valuable insights into different aspects of urban environments and make informed decisions for sustainable and efficient environment. This project was undertaken during my internship, where I had the opportunity to dive into Flutter development and contribute to a real-world application.
 
-#Internship Experience
+# Internship Experience
 During my internship, I embarked on a journey of learning and growth as I delved into the world of Flutter. As a newcomer to Flutter, I faced the challenge of understanding the existing codebase of the Smart City Research Center App. However, through perseverance and dedication, I familiarized myself with the code structure and architecture.
 
 One of the significant accomplishments during my internship was setting up the development environment and overcoming hurdles with dependencies. I encountered various challenges, including resolving conflicts between different packages and identifying suitable substitutes for packages that were incompatible with the web platform.
