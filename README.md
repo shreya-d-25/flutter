@@ -1,4 +1,5 @@
 #Smart City Research Center App
+#I worked on this during my summer internship
 The Smart City Research Center App is a Flutter-based mobile application developed to provide insights and analytics for various aspects of a smart city. It offers features such as detailed views of verticals, summaries of key insights, analytics dashboards, and a map view for visualizing smart devices across the city campus.
 
 Features:
